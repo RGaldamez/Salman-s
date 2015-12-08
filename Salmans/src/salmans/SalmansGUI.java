@@ -7,6 +7,7 @@ package salmans;
 
 import java.util.ArrayList;
 import java.util.Stack;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -53,6 +54,20 @@ public class SalmansGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jt_tiempo1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jl_ingredientes1 = new javax.swing.JList();
+        jLabel9 = new javax.swing.JLabel();
+        btn_eliminarIngrediente = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jt_nombre1 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jt_precio1 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jc_productos = new javax.swing.JComboBox();
+        jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -98,6 +113,12 @@ public class SalmansGUI extends javax.swing.JFrame {
                 .addComponent(btn_addIngredient)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
+
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jLabel2.setText("Tiempo de Preparacion (segundos)");
 
@@ -188,15 +209,119 @@ public class SalmansGUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Agregar", jPanel1);
 
+        jLabel7.setText("Tiempo de Preparacion (segundos)");
+
+        jScrollPane2.setViewportView(jl_ingredientes1);
+
+        jLabel9.setText("Lista de Ingredientes");
+
+        btn_eliminarIngrediente.setText("Eliminar Ingrediente");
+        btn_eliminarIngrediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarIngredienteActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Agregar Ingrediente");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Nombre");
+
+        jLabel8.setText("Precio");
+
+        jButton3.setText("Modificar Producto");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Cargar Producto");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton3)
+                                    .addComponent(jt_precio1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton4)
+                                    .addComponent(btn_eliminarIngrediente)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton5)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jt_tiempo1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jc_productos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jt_nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(108, 108, 108))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 362, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel9)
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_eliminarIngrediente)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addGap(0, 32, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jButton5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jc_productos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jt_tiempo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jt_nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jt_precio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton3)))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Modificar", jPanel2);
@@ -310,7 +435,7 @@ public class SalmansGUI extends javax.swing.JFrame {
         ingredientesTemp.add(temp);
         DefaultListModel model = new DefaultListModel();
         for (int i = 0; i < ingredientesTemp.size(); i++) {
-            model.addElement(i);
+            model.addElement(ingredientesTemp.get(i));
         }
         this.jl_ingredientes.setModel(model);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -330,6 +455,54 @@ public class SalmansGUI extends javax.swing.JFrame {
             this.jl_ingredientes.setModel(new DefaultListModel());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String temp = JOptionPane.showInputDialog(this, "Porfavor ingrese el nuevo Ingrediente");
+        productos.get(indexGlobal).getIngredientes().add(temp);
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < productos.get(indexGlobal).getIngredientes().size(); i++) {
+            model.addElement(productos.get(indexGlobal).getIngredientes().get(i));
+        }
+        this.jl_ingredientes.setModel(model);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for (int i = 0; i < this.productos.size(); i++) {
+            model.addElement(productos.get(i).getNombre());
+        }
+        this.jc_productos.setModel(model);
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        indexGlobal = this.jc_productos.getSelectedIndex();
+        if (indexGlobal != -1){
+            this.jt_nombre1.setText(productos.get(indexGlobal).getNombre());
+            this.jt_precio1.setText(Integer.toString(productos.get(indexGlobal).getPrecio()));
+            this.jt_tiempo1.setText(Integer.toString(productos.get(indexGlobal).getTiempo()));
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < productos.get(indexGlobal).getIngredientes().size(); i++) {
+                model.addElement(productos.get(indexGlobal).getIngredientes().get(i));
+            }
+            this.jl_ingredientes1.setModel(model);
+            this.ingredientesTemp = productos.get(indexGlobal).getIngredientes();
+        }else{
+            JOptionPane.showMessageDialog(this, "Error", "No se ha seleccionado nada del comboBox", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btn_eliminarIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarIngredienteActionPerformed
+        int index = this.jl_ingredientes1.getSelectedIndex();
+        if (index != -1){
+            productos.get(indexGlobal).getIngredientes().remove(index);
+        }else{
+            JOptionPane.showMessageDialog(this, "Error", "No se ha seleccionado nada de la lista", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_eliminarIngredienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,13 +548,21 @@ public class SalmansGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addIngredient;
+    private javax.swing.JButton btn_eliminarIngrediente;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
@@ -389,17 +570,24 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox jc_productos;
     private javax.swing.JDialog jd_almacen;
     private javax.swing.JDialog jd_productos;
     private javax.swing.JList jl_ingredientes;
+    private javax.swing.JList jl_ingredientes1;
     private javax.swing.JMenuItem jm_almacen;
     private javax.swing.JMenuItem jm_productos;
     private javax.swing.JTextField jt_ingrediente;
     private javax.swing.JTextField jt_nombre;
+    private javax.swing.JTextField jt_nombre1;
     private javax.swing.JTextField jt_precio;
+    private javax.swing.JTextField jt_precio1;
     private javax.swing.JTextField jt_tiempo;
+    private javax.swing.JTextField jt_tiempo1;
     // End of variables declaration//GEN-END:variables
+    int indexGlobal;
     private Stack stack;
     private ArrayList<Stack> almacen  = new ArrayList();
     private ArrayList<Producto> productos = new ArrayList();
