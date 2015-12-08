@@ -200,11 +200,11 @@ public class SalmansGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Agregar", jPanel1);
@@ -427,7 +427,7 @@ public class SalmansGUI extends javax.swing.JFrame {
         }
         
         this.jt_ingrediente.setText("");
-        JOptionPane.showMessageDialog(this, "", "Ingrediente Agregado al Almacén", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Ingrediente Agregado al Almacén", "", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btn_addIngredientActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -442,7 +442,7 @@ public class SalmansGUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (this.ingredientesTemp.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Error", "La lista de ingredientes esta vacia", WIDTH);
+            JOptionPane.showMessageDialog(this, "La lista de ingredientes esta vacia", "Error", WIDTH);
         }else{
             String nombre = this.jt_nombre.getText();
             int tiempo = Integer.parseInt(this.jt_tiempo.getText());
@@ -457,7 +457,17 @@ public class SalmansGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+        String nombre = this.jt_nombre1.getText();
+        int precio = Integer.parseInt(this.jt_precio1.getText());
+        int tiempo = Integer.parseInt(this.jt_tiempo1.getText());
+        productos.get(indexGlobal).setNombre(nombre);
+        productos.get(indexGlobal).setPrecio(precio);
+        productos.get(indexGlobal).setTiempo(tiempo);
+        this.jt_nombre1.setText("");
+        this.jt_precio1.setText("");
+        this.jt_tiempo1.setText("");
+        this.jl_ingredientes1.setModel(new DefaultListModel());
+        JOptionPane.showMessageDialog(null, "Producto modificado con exito");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -467,7 +477,7 @@ public class SalmansGUI extends javax.swing.JFrame {
         for (int i = 0; i < productos.get(indexGlobal).getIngredientes().size(); i++) {
             model.addElement(productos.get(indexGlobal).getIngredientes().get(i));
         }
-        this.jl_ingredientes.setModel(model);
+        this.jl_ingredientes1.setModel(model);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
@@ -491,7 +501,7 @@ public class SalmansGUI extends javax.swing.JFrame {
             this.jl_ingredientes1.setModel(model);
             this.ingredientesTemp = productos.get(indexGlobal).getIngredientes();
         }else{
-            JOptionPane.showMessageDialog(this, "Error", "No se ha seleccionado nada del comboBox", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado nada del comboBox", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -499,8 +509,13 @@ public class SalmansGUI extends javax.swing.JFrame {
         int index = this.jl_ingredientes1.getSelectedIndex();
         if (index != -1){
             productos.get(indexGlobal).getIngredientes().remove(index);
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < productos.get(indexGlobal).getIngredientes().size(); i++) {
+                model.addElement(productos.get(indexGlobal).getIngredientes().get(i));
+            }
+            this.jl_ingredientes1.setModel(model);
         }else{
-            JOptionPane.showMessageDialog(this, "Error", "No se ha seleccionado nada de la lista", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado nada de la lista", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_eliminarIngredienteActionPerformed
 
@@ -540,7 +555,7 @@ public class SalmansGUI extends javax.swing.JFrame {
     }
     
     public void openDialog(JDialog dialog){
-        dialog.setLocationRelativeTo(this);
+        dialog.setLocationRelativeTo(null);
         dialog.setModal(true);
         dialog.pack();
         dialog.setVisible(true);
