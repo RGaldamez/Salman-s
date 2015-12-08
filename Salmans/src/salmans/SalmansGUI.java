@@ -6,6 +6,7 @@
 package salmans;
 
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Stack;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -69,11 +70,29 @@ public class SalmansGUI extends javax.swing.JFrame {
         jc_productos = new javax.swing.JComboBox();
         jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jl_eliminarIngredientes = new javax.swing.JList();
+        jButton6 = new javax.swing.JButton();
+        jd_ordenes = new javax.swing.JDialog();
+        jt_numOrden = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jl_menu = new javax.swing.JList();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jl_ordenes = new javax.swing.JList();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jm_almacen = new javax.swing.JMenuItem();
         jm_productos = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
 
         jLabel1.setText("Almacén");
 
@@ -326,15 +345,36 @@ public class SalmansGUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Modificar", jPanel2);
 
+        jScrollPane3.setViewportView(jl_eliminarIngredientes);
+
+        jButton6.setText("Eliminar Producto");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(293, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(331, 331, 331))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 362, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jButton6)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Eliminar", jPanel3);
@@ -354,6 +394,89 @@ public class SalmansGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
+        );
+
+        jLabel10.setText("Número de Orden");
+
+        jScrollPane4.setViewportView(jl_menu);
+
+        jScrollPane5.setViewportView(jl_ordenes);
+
+        jButton7.setText("Agregar a la Orden");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("Eliminar de la Orden");
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel11.setText("<-----");
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel12.setText("----->");
+
+        jButton9.setText("Completar Orden");
+
+        javax.swing.GroupLayout jd_ordenesLayout = new javax.swing.GroupLayout(jd_ordenes.getContentPane());
+        jd_ordenes.getContentPane().setLayout(jd_ordenesLayout);
+        jd_ordenesLayout.setHorizontalGroup(
+            jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ordenesLayout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(jButton8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(160, 160, 160))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ordenesLayout.createSequentialGroup()
+                .addGap(193, 193, 193)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addGap(211, 211, 211))
+            .addGroup(jd_ordenesLayout.createSequentialGroup()
+                .addGap(319, 319, 319)
+                .addGroup(jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jt_numOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jd_ordenesLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel10)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ordenesLayout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ordenesLayout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ordenesLayout.createSequentialGroup()
+                        .addComponent(jButton9)
+                        .addGap(347, 347, 347))))
+        );
+        jd_ordenesLayout.setVerticalGroup(
+            jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_ordenesLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jt_numOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7)
+                    .addComponent(jButton8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton9)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -376,10 +499,25 @@ public class SalmansGUI extends javax.swing.JFrame {
         });
         jMenu1.add(jm_productos);
 
-        jMenuItem3.setText("jMenuItem3");
-        jMenu1.add(jMenuItem3);
+        jMenuItem1.setText("Ordenar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Cocina");
+
+        jMenuItem2.setText("Chefs");
+        jMenu2.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Transporte");
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -482,9 +620,13 @@ public class SalmansGUI extends javax.swing.JFrame {
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
         DefaultComboBoxModel model = new DefaultComboBoxModel();
+        DefaultComboBoxModel model1 = new DefaultComboBoxModel();
+        
         for (int i = 0; i < this.productos.size(); i++) {
             model.addElement(productos.get(i).getNombre());
+            model1.addElement(productos.get(i).getNombre());
         }
+        this.jl_eliminarIngredientes.setModel(model1);
         this.jc_productos.setModel(model);
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
@@ -518,6 +660,38 @@ public class SalmansGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado nada de la lista", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_eliminarIngredienteActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        int index = this.jl_eliminarIngredientes.getSelectedIndex();
+        if (index != -1){
+            productos.remove(index);
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < productos.size(); i++) {
+                model.addElement(productos.get(i));
+            }
+            this.jl_eliminarIngredientes.setModel(model);
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay ningun elemento de la lista seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < productos.size(); i++) {
+            model.addElement(productos.get(i));
+        }
+        this.jl_menu.setModel(model);
+        openDialog(this.jd_ordenes);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        int index = jl_menu.getSelectedIndex();
+        if(index != -1){
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "No ha seleccionado ningun elemento de la lista", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -569,7 +743,14 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -579,34 +760,44 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox jc_productos;
     private javax.swing.JDialog jd_almacen;
+    private javax.swing.JDialog jd_ordenes;
     private javax.swing.JDialog jd_productos;
+    private javax.swing.JList jl_eliminarIngredientes;
     private javax.swing.JList jl_ingredientes;
     private javax.swing.JList jl_ingredientes1;
+    private javax.swing.JList jl_menu;
+    private javax.swing.JList jl_ordenes;
     private javax.swing.JMenuItem jm_almacen;
     private javax.swing.JMenuItem jm_productos;
     private javax.swing.JTextField jt_ingrediente;
     private javax.swing.JTextField jt_nombre;
     private javax.swing.JTextField jt_nombre1;
+    private javax.swing.JTextField jt_numOrden;
     private javax.swing.JTextField jt_precio;
     private javax.swing.JTextField jt_precio1;
     private javax.swing.JTextField jt_tiempo;
     private javax.swing.JTextField jt_tiempo1;
     // End of variables declaration//GEN-END:variables
     int indexGlobal;
-    private Stack stack;
     private ArrayList<Stack> almacen  = new ArrayList();
     private ArrayList<Producto> productos = new ArrayList();
     private ArrayList<String> ingredientesTemp = new ArrayList();
-
+    private ArrayList<Orden> ordenes = new ArrayList();
 
 }
