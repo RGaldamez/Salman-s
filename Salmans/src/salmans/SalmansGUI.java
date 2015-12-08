@@ -6,7 +6,10 @@
 package salmans;
 
 import java.util.ArrayList;
+import java.util.Stack;
+import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +39,21 @@ public class SalmansGUI extends javax.swing.JFrame {
         jt_ingrediente = new javax.swing.JTextField();
         btn_addIngredient = new javax.swing.JButton();
         jd_productos = new javax.swing.JDialog();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jl_ingredientes = new javax.swing.JList();
+        jt_tiempo = new javax.swing.JTextField();
+        jt_precio = new javax.swing.JTextField();
+        jt_nombre = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jm_almacen = new javax.swing.JMenuItem();
@@ -56,17 +74,18 @@ public class SalmansGUI extends javax.swing.JFrame {
         jd_almacenLayout.setHorizontalGroup(
             jd_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_almacenLayout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jt_ingrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
-            .addGroup(jd_almacenLayout.createSequentialGroup()
-                .addGroup(jd_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_addIngredient)
+                .addGroup(jd_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_almacenLayout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(jLabel1)
-                        .addGap(77, 77, 77)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(111, 111, 111)
+                        .addComponent(jt_ingrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_almacenLayout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addGroup(jd_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_addIngredient)
+                            .addGroup(jd_almacenLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(77, 77, 77)))))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         jd_almacenLayout.setVerticalGroup(
             jd_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,20 +99,141 @@ public class SalmansGUI extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
+        jLabel2.setText("Tiempo de Preparacion (segundos)");
+
+        jLabel3.setText("Nombre");
+
+        jLabel4.setText("Precio");
+
+        jLabel5.setText("Lista de Ingredientes");
+
+        jScrollPane1.setViewportView(jl_ingredientes);
+
+        jButton1.setText("Agregar Ingrediente");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Agregar Producto");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jt_tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2)
+                                    .addComponent(jt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(108, 108, 108))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jt_tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Agregar", jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 740, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 362, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Modificar", jPanel2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 740, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 362, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Eliminar", jPanel3);
+
         javax.swing.GroupLayout jd_productosLayout = new javax.swing.GroupLayout(jd_productos.getContentPane());
         jd_productos.getContentPane().setLayout(jd_productosLayout);
         jd_productosLayout.setHorizontalGroup(
             jd_productosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_productosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         jd_productosLayout.setVerticalGroup(
             jd_productosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_productosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Opciones");
+        jMenu1.setText("Menu");
 
         jm_almacen.setText("Almacen");
         jm_almacen.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +278,7 @@ public class SalmansGUI extends javax.swing.JFrame {
 
     private void jm_productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_productosActionPerformed
         openDialog(this.jd_productos);
+        this.ingredientesTemp = new ArrayList();
     }//GEN-LAST:event_jm_productosActionPerformed
 
     private void btn_addIngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addIngredientActionPerformed
@@ -146,7 +287,7 @@ public class SalmansGUI extends javax.swing.JFrame {
 
         for (int i = 0; i < almacen.size(); i++) {
             for (int j = 0; j < almacen.get(i).size(); j++) {
-                if (newIngredient.equalsIgnoreCase(almacen.get(i).get(j))){
+                if (newIngredient.equalsIgnoreCase((String)almacen.get(i).peek())){
                     almacen.get(i).add(newIngredient.toLowerCase());
                     newItem=false;
                     break;
@@ -156,11 +297,39 @@ public class SalmansGUI extends javax.swing.JFrame {
             }
         }
         if (newItem){
-            almacen.add(new ArrayList());
+            almacen.add(new Stack());
             almacen.get(almacen.size()-1).add(newIngredient.toLowerCase());
         }
         
+        this.jt_ingrediente.setText("");
+        JOptionPane.showMessageDialog(this, "", "Ingrediente Agregado al Almacén", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btn_addIngredientActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String temp = JOptionPane.showInputDialog(this, "Porfavor ingrese el nuevo Ingrediente");
+        ingredientesTemp.add(temp);
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < ingredientesTemp.size(); i++) {
+            model.addElement(i);
+        }
+        this.jl_ingredientes.setModel(model);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (this.ingredientesTemp.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Error", "La lista de ingredientes esta vacia", WIDTH);
+        }else{
+            String nombre = this.jt_nombre.getText();
+            int tiempo = Integer.parseInt(this.jt_tiempo.getText());
+            int precio = Integer.parseInt(this.jt_precio.getText());
+            productos.add(new Producto(this.ingredientesTemp,tiempo,nombre,precio));
+            JOptionPane.showMessageDialog(this, "Producto Agregado");
+            this.jt_nombre.setText("");
+            this.jt_precio.setText("");
+            this.jt_tiempo.setText("");
+            this.jl_ingredientes.setModel(new DefaultListModel());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,18 +375,35 @@ public class SalmansGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addIngredient;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JDialog jd_almacen;
     private javax.swing.JDialog jd_productos;
+    private javax.swing.JList jl_ingredientes;
     private javax.swing.JMenuItem jm_almacen;
     private javax.swing.JMenuItem jm_productos;
     private javax.swing.JTextField jt_ingrediente;
+    private javax.swing.JTextField jt_nombre;
+    private javax.swing.JTextField jt_precio;
+    private javax.swing.JTextField jt_tiempo;
     // End of variables declaration//GEN-END:variables
-    private ArrayList<ArrayList<String>> almacen  = new ArrayList();
+    private Stack stack;
+    private ArrayList<Stack> almacen  = new ArrayList();
     private ArrayList<Producto> productos = new ArrayList();
+    private ArrayList<String> ingredientesTemp = new ArrayList();
 
 
 }
