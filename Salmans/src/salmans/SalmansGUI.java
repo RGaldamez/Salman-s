@@ -94,6 +94,12 @@ public class SalmansGUI extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
+        jd_almacen.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                jd_almacenWindowClosing(evt);
+            }
+        });
+
         jLabel1.setText("Almacén");
 
         btn_addIngredient.setText("Agregar Ingrediente al almacén");
@@ -132,6 +138,12 @@ public class SalmansGUI extends javax.swing.JFrame {
                 .addComponent(btn_addIngredient)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
+
+        jd_productos.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                jd_productosWindowClosing(evt);
+            }
+        });
 
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -396,6 +408,12 @@ public class SalmansGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jd_ordenes.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                jd_ordenesWindowClosing(evt);
+            }
+        });
+
         jLabel10.setText("Número de Orden");
 
         jScrollPane4.setViewportView(jl_menu);
@@ -410,6 +428,11 @@ public class SalmansGUI extends javax.swing.JFrame {
         });
 
         jButton8.setText("Eliminar de la Orden");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel11.setText("<-----");
@@ -418,6 +441,11 @@ public class SalmansGUI extends javax.swing.JFrame {
         jLabel12.setText("----->");
 
         jButton9.setText("Completar Orden");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_ordenesLayout = new javax.swing.GroupLayout(jd_ordenes.getContentPane());
         jd_ordenes.getContentPane().setLayout(jd_ordenesLayout);
@@ -591,6 +619,7 @@ public class SalmansGUI extends javax.swing.JFrame {
             this.jt_precio.setText("");
             this.jt_tiempo.setText("");
             this.jl_ingredientes.setModel(new DefaultListModel());
+            this.ingredientesTemp = new ArrayList();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -624,7 +653,7 @@ public class SalmansGUI extends javax.swing.JFrame {
         
         for (int i = 0; i < this.productos.size(); i++) {
             model.addElement(productos.get(i).getNombre());
-            model1.addElement(productos.get(i).getNombre());
+            model1.addElement(productos.get(i).toString());
         }
         this.jl_eliminarIngredientes.setModel(model1);
         this.jc_productos.setModel(model);
@@ -682,16 +711,73 @@ public class SalmansGUI extends javax.swing.JFrame {
         }
         this.jl_menu.setModel(model);
         openDialog(this.jd_ordenes);
+        ordenTemp = new Orden();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         int index = jl_menu.getSelectedIndex();
         if(index != -1){
-            
+            ordenTemp.getListaProductos().add(productos.get(index));
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < ordenTemp.getListaProductos().size(); i++) {
+                model.addElement(ordenTemp.getListaProductos().get(i).getNombre());
+            }
         }else{
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningun elemento de la lista", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        int index = jl_menu.getSelectedIndex();
+        if(index != -1){
+            ordenTemp.getListaProductos().remove(index);
+        }else{
+            JOptionPane.showMessageDialog(this, "No ha seleccionado ningun elemento de la lista", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        String temp = this.jt_numOrden.getText();
+        int tiempo=0;
+        boolean isTaken = false;
+        for (int i = 0; i < this.ordenesTomadas.size(); i++) {
+            if (temp.equalsIgnoreCase(ordenesTomadas.get(i))){
+                isTaken = true;
+                break;
+            }
+        }
+        if (ordenTemp.getListaProductos().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Esta orden no tiene productos", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if (temp.isEmpty() || isTaken){
+                JOptionPane.showMessageDialog(this, "El numero de orden No es valido o ya se ha tomado ese numero", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                for (int i = 0; i < ordenTemp.getListaProductos().size(); i++) {
+                    tiempo+= ordenTemp.getListaProductos().get(i).getTiempo();
+                }
+                ordenTemp.setNumeroOrden(temp);
+                this.ordenesTomadas.add(temp);
+                this.ordenes.add(ordenTemp);
+                JOptionPane.showMessageDialog(this, "Su orden ha sido tomada, tiempo de preparación: "+tiempo);
+                this.jt_numOrden.setText("");
+                this.jl_menu.setModel(new DefaultListModel());
+                this.jl_ordenes.setModel(new DefaultListModel());
+                ordenTemp = new Orden();
+            }
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jd_ordenesWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_ordenesWindowClosing
+        this.setVisible(true);
+    }//GEN-LAST:event_jd_ordenesWindowClosing
+
+    private void jd_almacenWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_almacenWindowClosing
+        this.setVisible(true);
+    }//GEN-LAST:event_jd_almacenWindowClosing
+
+    private void jd_productosWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_productosWindowClosing
+        this.setVisible(true);
+    }//GEN-LAST:event_jd_productosWindowClosing
 
     /**
      * @param args the command line arguments
@@ -729,10 +815,12 @@ public class SalmansGUI extends javax.swing.JFrame {
     }
     
     public void openDialog(JDialog dialog){
-        dialog.setLocationRelativeTo(null);
+        this.setVisible(false);
+        dialog.setLocationRelativeTo(this);
         dialog.setModal(true);
         dialog.pack();
         dialog.setVisible(true);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -799,5 +887,8 @@ public class SalmansGUI extends javax.swing.JFrame {
     private ArrayList<Producto> productos = new ArrayList();
     private ArrayList<String> ingredientesTemp = new ArrayList();
     private ArrayList<Orden> ordenes = new ArrayList();
+    private Orden ordenTemp = new Orden();
+    double gananciasDelDia=0;
+    private ArrayList<String> ordenesTomadas = new ArrayList();
 
 }

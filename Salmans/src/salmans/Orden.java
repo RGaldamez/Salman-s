@@ -24,7 +24,7 @@ public class Orden {
     public Orden() {
         listaProductos = new ArrayList();
     }
-
+    
     public Orden(String numeroOrden) {
         this.numeroOrden = numeroOrden;
     }
