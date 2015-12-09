@@ -117,6 +117,11 @@ public class SalmansGUI extends javax.swing.JFrame {
         progressBar5 = new javax.swing.JProgressBar();
         progressBar6 = new javax.swing.JProgressBar();
         progressBar4 = new javax.swing.JProgressBar();
+        jd_camiones = new javax.swing.JDialog();
+        jc_camiones = new javax.swing.JComboBox();
+        jButton10 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jl_camiones = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jm_almacen = new javax.swing.JMenuItem();
@@ -125,6 +130,9 @@ public class SalmansGUI extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         jd_almacen.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -148,25 +156,24 @@ public class SalmansGUI extends javax.swing.JFrame {
             .addGroup(jd_almacenLayout.createSequentialGroup()
                 .addGroup(jd_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_almacenLayout.createSequentialGroup()
-                        .addGap(111, 111, 111)
+                        .addGap(117, 117, 117)
                         .addComponent(jt_ingrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jd_almacenLayout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addGroup(jd_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_addIngredient)
-                            .addGroup(jd_almacenLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(77, 77, 77)))))
-                .addContainerGap(134, Short.MAX_VALUE))
+                        .addGap(144, 144, 144)
+                        .addComponent(btn_addIngredient))
+                    .addGroup(jd_almacenLayout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(jLabel1)))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         jd_almacenLayout.setVerticalGroup(
             jd_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_almacenLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(38, 38, 38)
-                .addComponent(jt_ingrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
+                .addComponent(jLabel1)
+                .addGap(32, 32, 32)
+                .addComponent(jt_ingrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(btn_addIngredient)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
@@ -625,6 +632,47 @@ public class SalmansGUI extends javax.swing.JFrame {
                 .addGap(52, 52, 52))
         );
 
+        jd_camiones.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                jd_camionesWindowClosing(evt);
+            }
+        });
+
+        jButton10.setText("Cargar Lista de Ordenes ");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane6.setViewportView(jl_camiones);
+
+        javax.swing.GroupLayout jd_camionesLayout = new javax.swing.GroupLayout(jd_camiones.getContentPane());
+        jd_camiones.getContentPane().setLayout(jd_camionesLayout);
+        jd_camionesLayout.setHorizontalGroup(
+            jd_camionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_camionesLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(jd_camionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton10)
+                    .addComponent(jc_camiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+        jd_camionesLayout.setVerticalGroup(
+            jd_camionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_camionesLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(jd_camionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jd_camionesLayout.createSequentialGroup()
+                        .addComponent(jButton10)
+                        .addGap(18, 18, 18)
+                        .addComponent(jc_camiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Menu");
@@ -668,7 +716,28 @@ public class SalmansGUI extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Transporte");
+
+        jMenuItem3.setText("Camiones");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
+
         jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Ventas");
+
+        jMenuItem5.setText("Total Ganancias");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -895,12 +964,17 @@ public class SalmansGUI extends javax.swing.JFrame {
                 }
                 for (int i = 0; i < ingredientesTemp.size(); i++) {
                     for (int j = 0; j < almacen.size(); j++) {
-                        if (!almacen.get(i).empty()){
-                            if(ingredientesTemp.get(i).equalsIgnoreCase((String)almacen.get(j).peek())){
-                                almacen.get(j).pop();
-                                tieneIngredientes.set(i, true);
+                        try {
+                            if (!almacen.get(i).empty()){
+                                if(ingredientesTemp.get(i).equalsIgnoreCase((String)almacen.get(j).peek())){   
+                                    almacen.get(j).pop();
+                                    tieneIngredientes.set(i, true);
+                                }   
                             }
+                        } catch (Exception e) {
+                            
                         }
+                            
                     }
                 }
                 for (int i = 0; i < tieneIngredientes.size(); i++) {
@@ -921,7 +995,7 @@ public class SalmansGUI extends javax.swing.JFrame {
                     this.jt_numOrden.setText("");
                     this.jl_menu.setModel(new DefaultListModel());
                     this.jl_ordenes.setModel(new DefaultListModel());
-                    this.gananciasDelDia+=ordenTemp.getTiempoTotal();
+                    this.gananciasDelDia+=ordenTemp.getPrecioTotal();
                     int MinOrders = Integer.MAX_VALUE;
                     int index=-1;
                     ArrayList<Cocinero> temp2 = new ArrayList();
@@ -966,13 +1040,20 @@ public class SalmansGUI extends javax.swing.JFrame {
                     jl_menu.setModel(model);
                 }else{
                     JOptionPane.showMessageDialog(this, "No hay ingredientes en el almacen", "Error", JOptionPane.ERROR_MESSAGE);
+                    this.jl_ordenes.setModel(new DefaultListModel());
+                    ordenTemp = new Orden();
+        
                 }
             }
         }
+        
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jd_ordenesWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_ordenesWindowClosing
         this.setVisible(true);
+        this.jt_numOrden.setText("");
+        this.jl_menu.setModel(new DefaultListModel());
+        this.jl_ordenes.setModel(new DefaultListModel());
     }//GEN-LAST:event_jd_ordenesWindowClosing
 
     private void jd_almacenWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_almacenWindowClosing
@@ -998,6 +1079,36 @@ public class SalmansGUI extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         openDialog(this.jd_cocina);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for (int i = 0; i < 6; i++) {
+            model.addElement("camion "+(i+1));
+        }
+        this.jc_camiones.setModel(model);
+        openDialog(this.jd_camiones);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        JOptionPane.showMessageDialog(this, "Las ganancias fueron de "+this.gananciasDelDia+ " Lempiras");
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        int index = this.jc_camiones.getSelectedIndex();
+        if (index !=-1){
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < this.camiones.get(index).size(); i++) {
+                model.addElement("Numero de Orden: "+this.camiones.get(index).get(i).getNumeroOrden());
+            }
+            this.jl_camiones.setModel(model);
+        }else{
+            JOptionPane.showMessageDialog(this, "Error, no ha seleccionado un índice válido.");
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jd_camionesWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_camionesWindowClosing
+        this.setVisible(true);
+    }//GEN-LAST:event_jd_camionesWindowClosing
 
     /**
      * @param args the command line arguments
@@ -1047,6 +1158,7 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_addIngredient;
     private javax.swing.JButton btn_eliminarIngrediente;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1077,9 +1189,12 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1088,12 +1203,16 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox jc_camiones;
     private javax.swing.JComboBox jc_productos;
     private javax.swing.JDialog jd_almacen;
+    private javax.swing.JDialog jd_camiones;
     private javax.swing.JDialog jd_cocina;
     private javax.swing.JDialog jd_ordenes;
     private javax.swing.JDialog jd_productos;
+    private javax.swing.JList jl_camiones;
     private javax.swing.JList jl_eliminarIngredientes;
     private javax.swing.JList jl_ingredientes;
     private javax.swing.JList jl_ingredientes1;

@@ -45,6 +45,14 @@ public class Orden {
         this.numeroOrden = numeroOrden;
     }
     
+    public double getPrecioTotal(){
+        double temp = 0;
+        for (int i = 0; i < this.getListaProductos().size(); i++) {
+            temp += this.getListaProductos().get(i).getPrecio();
+        }
+        return temp;
+    }
+    
     public int getTiempoTotal(){
         int temp =0;
         for (int i = 0; i < this.getListaProductos().size(); i++) {
