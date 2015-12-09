@@ -791,8 +791,6 @@ public class SalmansGUI extends javax.swing.JFrame {
                     almacen.get(i).add(newIngredient.toLowerCase());
                     newItem=false;
                     break;
-                }else{
-                    newItem = true;
                 }
             }
         }
