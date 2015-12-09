@@ -13,7 +13,7 @@ import javax.swing.JProgressBar;
  * @author Ricardo
  */
 public class Cocinero extends Thread{
-    private ArrayList<Orden> ordenes;
+    private ArrayList<Orden> ordenes = new ArrayList();
     private ArrayList<ArrayList<Orden>> ordenesCamion;
     private JProgressBar bar;
     boolean finishedOrder;
@@ -24,6 +24,13 @@ public class Cocinero extends Thread{
         this.ordenes = ordenes;
         this.ordenesCamion = ordenesCamion;
     }
+
+    public Cocinero(JProgressBar bar, ArrayList<ArrayList<Orden>> ordenesCamion) {
+        this.ordenesCamion = ordenesCamion;
+        this.bar = bar;
+    }
+    
+    
     
     public ArrayList<Orden> getOrdenes() {
         return ordenes;
@@ -67,19 +74,23 @@ public class Cocinero extends Thread{
     
     @Override
     public void run() {
-        System.out.println("Inicia Thread");
+        boolean tieneOrdenes;
         int tiempo;
         int sleepTime;
+        
         while(active){
-            if(ordenes.size()>0){
-                System.out.println("Entra a la condicion");
+            if(!this.getOrdenes().isEmpty()){
+                tieneOrdenes = true;
+            }else{
+                tieneOrdenes = false;
+            }
+            try {
                 Orden temp = this.ordenes.get(0);
                 tiempo = temp.getTiempoTotal();
-                this.ordenes.remove(0);
                 finishedOrder = false;
                 this.bar.setValue(0);
-                sleepTime = tiempo/100;
-                sleepTime*=1000;
+                sleepTime = tiempo*10/100;
+                sleepTime*=100;
                 while(!finishedOrder){
                     if(bar.getValue()!=100){
                         bar.setValue(bar.getValue()+1);
@@ -92,6 +103,7 @@ public class Cocinero extends Thread{
                         break;
                     }
                 }
+                this.ordenes.remove(0);
                 int menor=Integer.MAX_VALUE;
                 
                 int index=0;
@@ -102,8 +114,12 @@ public class Cocinero extends Thread{
                     }
                 }
                 ordenesCamion.get(index).add(temp);
-                System.out.println(ordenesCamion.get(index).get(ordenesCamion.get(index).size()-1).getNumeroOrden());
+                this.bar.setValue(0);
+                
+            } catch (Exception e) {
             }
+                
+            
         }        
     }
     

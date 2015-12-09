@@ -31,12 +31,12 @@ public class SalmansGUI extends javax.swing.JFrame {
         this.camiones.add(new ArrayList());
         this.camiones.add(new ArrayList());
         this.camiones.add(new ArrayList());
-        cocinero1 = new Cocinero(this.progressBar1,this.ordenes,this.camiones);
-        cocinero2 = new Cocinero(this.progressBar2,this.ordenes,this.camiones);
-        cocinero3 = new Cocinero(this.progressBar3,this.ordenes,this.camiones);
-        cocinero4 = new Cocinero(this.progressBar4,this.ordenes,this.camiones);
-        cocinero5 = new Cocinero(this.progressBar5,this.ordenes,this.camiones);
-        cocinero6 = new Cocinero(this.progressBar6,this.ordenes,this.camiones);
+        cocinero1 = new Cocinero(this.progressBar1,this.camiones);
+        cocinero2 = new Cocinero(this.progressBar2,this.camiones);
+        cocinero3 = new Cocinero(this.progressBar3,this.camiones);
+        cocinero4 = new Cocinero(this.progressBar4,this.camiones);
+        cocinero5 = new Cocinero(this.progressBar5,this.camiones);
+        cocinero6 = new Cocinero(this.progressBar6,this.camiones);
         cocinero1.start();
         cocinero2.start();
         cocinero3.start();
@@ -853,9 +853,14 @@ public class SalmansGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        int index = jl_menu.getSelectedIndex();
+        int index = this.jl_ordenes.getSelectedIndex();
         if(index != -1){
             ordenTemp.getListaProductos().remove(index);
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < ordenTemp.getListaProductos().size(); i++) {
+                model.addElement(ordenTemp.getListaProductos().get(index).toString());
+            }
+            this.jl_ordenes.setModel(model);
         }else{
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningun elemento de la lista", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -877,20 +882,91 @@ public class SalmansGUI extends javax.swing.JFrame {
             if (temp.isEmpty() || isTaken){
                 JOptionPane.showMessageDialog(this, "El numero de orden No es valido o ya se ha tomado ese numero", "Error", JOptionPane.ERROR_MESSAGE);
             }else{
+                boolean proceed = true;
+                ArrayList<Boolean> tieneIngredientes = new ArrayList();
+                ArrayList<String> ingredientesTemp = new ArrayList();
                 for (int i = 0; i < ordenTemp.getListaProductos().size(); i++) {
-                    tiempo+= ordenTemp.getListaProductos().get(i).getTiempo();
+                    for (int j = 0; j < ordenTemp.getListaProductos().get(i).getIngredientes().size(); j++) {
+                        ingredientesTemp.add(ordenTemp.getListaProductos().get(i).getIngredientes().get(j));
+                    }
                 }
-                ordenTemp.setNumeroOrden(temp);
-                this.ordenesTomadas.add(temp);
-                this.ordenes.add(ordenTemp);
-                JOptionPane.showMessageDialog(this, "Su orden ha sido tomada, tiempo de preparación: "+tiempo);
-                this.jt_numOrden.setText("");
-                this.jl_menu.setModel(new DefaultListModel());
-                this.jl_ordenes.setModel(new DefaultListModel());
-                this.gananciasDelDia+=ordenTemp.getTiempoTotal();
-                ordenTemp = new Orden();
-                System.out.println("Clase: "+this.ordenes.size());
-                System.out.println("Cocinero: "+cocinero1.getOrdenes().size());
+                for (int i = 0; i < ingredientesTemp.size(); i++) {
+                    tieneIngredientes.add(false);
+                }
+                for (int i = 0; i < ingredientesTemp.size(); i++) {
+                    for (int j = 0; j < almacen.size(); j++) {
+                        if (!almacen.get(i).empty()){
+                            if(ingredientesTemp.get(i).equalsIgnoreCase((String)almacen.get(j).peek())){
+                                almacen.get(j).pop();
+                                tieneIngredientes.set(i, true);
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < tieneIngredientes.size(); i++) {
+                    if(tieneIngredientes.get(i) == false){
+                        proceed = false;
+                        break;
+                    }
+                }
+                
+                if (proceed){
+                    for (int i = 0; i < ordenTemp.getListaProductos().size(); i++) {
+                        tiempo+= ordenTemp.getListaProductos().get(i).getTiempo();
+                    }
+                    ordenTemp.setNumeroOrden(temp);
+                    this.ordenesTomadas.add(temp);
+                    this.ordenes.add(ordenTemp);
+                    JOptionPane.showMessageDialog(this, "Su orden ha sido tomada, tiempo de preparación: "+tiempo);
+                    this.jt_numOrden.setText("");
+                    this.jl_menu.setModel(new DefaultListModel());
+                    this.jl_ordenes.setModel(new DefaultListModel());
+                    this.gananciasDelDia+=ordenTemp.getTiempoTotal();
+                    int MinOrders = Integer.MAX_VALUE;
+                    int index=-1;
+                    ArrayList<Cocinero> temp2 = new ArrayList();
+                    temp2.add(cocinero1);
+                    temp2.add(cocinero2);
+                    temp2.add(cocinero3);
+                    temp2.add(cocinero4);
+                    temp2.add(cocinero5);
+                    temp2.add(cocinero6);
+                    for (int i = 0; i < temp2.size(); i++) {
+                        if (MinOrders> temp2.get(i).getOrdenes().size()){
+                            MinOrders = temp2.get(i).getOrdenes().size();
+                            index = i;
+                        }
+                    }
+
+                    System.out.println(index);
+                    if (index ==0){
+                        cocinero1.getOrdenes().add(ordenTemp);
+
+                    }else if(index==1){
+                        cocinero2.getOrdenes().add(ordenTemp);
+
+                    }else if(index==2){
+                        cocinero3.getOrdenes().add(ordenTemp);
+
+                    }else if(index==3){
+                        cocinero4.getOrdenes().add(ordenTemp);
+
+                    }else if(index==4){
+                        cocinero5.getOrdenes().add(ordenTemp);
+
+                    }else if(index==5){
+                        cocinero6.getOrdenes().add(ordenTemp);
+
+                    }
+                    ordenTemp = new Orden();
+                    DefaultListModel model = new DefaultListModel();
+                    for (int i = 0; i < productos.size(); i++) {
+                        model.addElement(productos.get(i).toString());
+                    }
+                    jl_menu.setModel(model);
+                }else{
+                    JOptionPane.showMessageDialog(this, "No hay ingredientes en el almacen", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -905,6 +981,14 @@ public class SalmansGUI extends javax.swing.JFrame {
 
     private void jd_productosWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_productosWindowClosing
         this.setVisible(true);
+        this.jl_ingredientes.setModel(new DefaultListModel());
+        this.jl_ingredientes1.setModel(new DefaultListModel());
+        this.jt_nombre.setText("");
+        this.jt_precio.setText("");
+        this.jt_tiempo.setText("");
+        this.jt_nombre1.setText("");
+        this.jt_precio1.setText("");
+        this.jt_tiempo1.setText("");
     }//GEN-LAST:event_jd_productosWindowClosing
 
     private void jd_cocinaWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_cocinaWindowClosing
