@@ -25,6 +25,24 @@ public class SalmansGUI extends javax.swing.JFrame {
     public SalmansGUI() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.camiones.add(new ArrayList());
+        this.camiones.add(new ArrayList());
+        this.camiones.add(new ArrayList());
+        this.camiones.add(new ArrayList());
+        this.camiones.add(new ArrayList());
+        this.camiones.add(new ArrayList());
+        cocinero1 = new Cocinero(this.progressBar1,this.ordenes,this.camiones);
+        cocinero2 = new Cocinero(this.progressBar2,this.ordenes,this.camiones);
+        cocinero3 = new Cocinero(this.progressBar3,this.ordenes,this.camiones);
+        cocinero4 = new Cocinero(this.progressBar4,this.ordenes,this.camiones);
+        cocinero5 = new Cocinero(this.progressBar5,this.ordenes,this.camiones);
+        cocinero6 = new Cocinero(this.progressBar6,this.ordenes,this.camiones);
+        cocinero1.start();
+        cocinero2.start();
+        cocinero3.start();
+        cocinero4.start();
+        cocinero5.start();
+        cocinero6.start();
     }
 
     /**
@@ -85,6 +103,20 @@ public class SalmansGUI extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
+        jd_cocina = new javax.swing.JDialog();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        progressBar2 = new javax.swing.JProgressBar();
+        progressBar3 = new javax.swing.JProgressBar();
+        progressBar1 = new javax.swing.JProgressBar();
+        progressBar5 = new javax.swing.JProgressBar();
+        progressBar6 = new javax.swing.JProgressBar();
+        progressBar4 = new javax.swing.JProgressBar();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jm_almacen = new javax.swing.JMenuItem();
@@ -463,14 +495,6 @@ public class SalmansGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(211, 211, 211))
-            .addGroup(jd_ordenesLayout.createSequentialGroup()
-                .addGap(319, 319, 319)
-                .addGroup(jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jt_numOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jd_ordenesLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel10)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ordenesLayout.createSequentialGroup()
                 .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,13 +506,22 @@ public class SalmansGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ordenesLayout.createSequentialGroup()
                         .addComponent(jButton9)
                         .addGap(347, 347, 347))))
+            .addGroup(jd_ordenesLayout.createSequentialGroup()
+                .addGroup(jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_ordenesLayout.createSequentialGroup()
+                        .addGap(319, 319, 319)
+                        .addComponent(jt_numOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_ordenesLayout.createSequentialGroup()
+                        .addGap(352, 352, 352)
+                        .addComponent(jLabel10)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jd_ordenesLayout.setVerticalGroup(
             jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_ordenesLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jt_numOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(jd_ordenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,6 +538,91 @@ public class SalmansGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton9)
                 .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jd_cocina.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                jd_cocinaWindowClosing(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel13.setText("Cocina");
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel14.setText("Cocinero 1");
+
+        jLabel15.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel15.setText("Cocinero 2");
+
+        jLabel16.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel16.setText("Cocinero 3");
+
+        jLabel17.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel17.setText("Cocinero 5");
+
+        jLabel18.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel18.setText("Cocinero 4");
+
+        jLabel19.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel19.setText("Cocinero 6");
+
+        javax.swing.GroupLayout jd_cocinaLayout = new javax.swing.GroupLayout(jd_cocina.getContentPane());
+        jd_cocina.getContentPane().setLayout(jd_cocinaLayout);
+        jd_cocinaLayout.setHorizontalGroup(
+            jd_cocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_cocinaLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jd_cocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addGroup(jd_cocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(progressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBar5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBar6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63))
+        );
+        jd_cocinaLayout.setVerticalGroup(
+            jd_cocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_cocinaLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel13)
+                .addGap(47, 47, 47)
+                .addGroup(jd_cocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addComponent(progressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(jd_cocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jd_cocinaLayout.createSequentialGroup()
+                        .addGroup(jd_cocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel15)
+                            .addComponent(progressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel16))
+                    .addComponent(progressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(jd_cocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel18)
+                    .addComponent(progressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(jd_cocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_cocinaLayout.createSequentialGroup()
+                        .addGroup(jd_cocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(progressBar5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel19))
+                    .addComponent(progressBar6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -540,6 +658,11 @@ public class SalmansGUI extends javax.swing.JFrame {
         jMenu2.setText("Cocina");
 
         jMenuItem2.setText("Chefs");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
@@ -557,7 +680,7 @@ public class SalmansGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 281, Short.MAX_VALUE)
         );
 
         pack();
@@ -705,6 +828,7 @@ public class SalmansGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
         DefaultListModel model = new DefaultListModel();
         for (int i = 0; i < productos.size(); i++) {
             model.addElement(productos.get(i));
@@ -720,8 +844,9 @@ public class SalmansGUI extends javax.swing.JFrame {
             ordenTemp.getListaProductos().add(productos.get(index));
             DefaultListModel model = new DefaultListModel();
             for (int i = 0; i < ordenTemp.getListaProductos().size(); i++) {
-                model.addElement(ordenTemp.getListaProductos().get(i).getNombre());
+                model.addElement(ordenTemp.getListaProductos().get(i).toString());
             }
+            this.jl_ordenes.setModel(model);
         }else{
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningun elemento de la lista", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -762,7 +887,10 @@ public class SalmansGUI extends javax.swing.JFrame {
                 this.jt_numOrden.setText("");
                 this.jl_menu.setModel(new DefaultListModel());
                 this.jl_ordenes.setModel(new DefaultListModel());
+                this.gananciasDelDia+=ordenTemp.getTiempoTotal();
                 ordenTemp = new Orden();
+                System.out.println("Clase: "+this.ordenes.size());
+                System.out.println("Cocinero: "+cocinero1.getOrdenes().size());
             }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -778,6 +906,14 @@ public class SalmansGUI extends javax.swing.JFrame {
     private void jd_productosWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_productosWindowClosing
         this.setVisible(true);
     }//GEN-LAST:event_jd_productosWindowClosing
+
+    private void jd_cocinaWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_cocinaWindowClosing
+        this.setVisible(true);
+    }//GEN-LAST:event_jd_cocinaWindowClosing
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        openDialog(this.jd_cocina);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -839,6 +975,13 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -864,6 +1007,7 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox jc_productos;
     private javax.swing.JDialog jd_almacen;
+    private javax.swing.JDialog jd_cocina;
     private javax.swing.JDialog jd_ordenes;
     private javax.swing.JDialog jd_productos;
     private javax.swing.JList jl_eliminarIngredientes;
@@ -881,6 +1025,12 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jt_precio1;
     private javax.swing.JTextField jt_tiempo;
     private javax.swing.JTextField jt_tiempo1;
+    private javax.swing.JProgressBar progressBar1;
+    private javax.swing.JProgressBar progressBar2;
+    private javax.swing.JProgressBar progressBar3;
+    private javax.swing.JProgressBar progressBar4;
+    private javax.swing.JProgressBar progressBar5;
+    private javax.swing.JProgressBar progressBar6;
     // End of variables declaration//GEN-END:variables
     int indexGlobal;
     private ArrayList<Stack> almacen  = new ArrayList();
@@ -890,5 +1040,14 @@ public class SalmansGUI extends javax.swing.JFrame {
     private Orden ordenTemp = new Orden();
     double gananciasDelDia=0;
     private ArrayList<String> ordenesTomadas = new ArrayList();
-
+    private ArrayList<ArrayList<Orden>> camiones = new ArrayList();
+    Cocinero cocinero1;
+    Cocinero cocinero2;
+    Cocinero cocinero3;
+    Cocinero cocinero4;
+    Cocinero cocinero5;
+    Cocinero cocinero6;
+    boolean startedThread = false;
+    Hilo hil;
+    
 }
