@@ -58,6 +58,8 @@ public class SalmansGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jt_ingrediente = new javax.swing.JTextField();
         btn_addIngredient = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jl_almacen = new javax.swing.JList();
         jd_productos = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -149,6 +151,8 @@ public class SalmansGUI extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane7.setViewportView(jl_almacen);
+
         javax.swing.GroupLayout jd_almacenLayout = new javax.swing.GroupLayout(jd_almacen.getContentPane());
         jd_almacen.getContentPane().setLayout(jd_almacenLayout);
         jd_almacenLayout.setHorizontalGroup(
@@ -164,7 +168,9 @@ public class SalmansGUI extends javax.swing.JFrame {
                     .addGroup(jd_almacenLayout.createSequentialGroup()
                         .addGap(225, 225, 225)
                         .addComponent(jLabel1)))
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jd_almacenLayout.setVerticalGroup(
             jd_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,6 +182,10 @@ public class SalmansGUI extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(btn_addIngredient)
                 .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(jd_almacenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7)
+                .addContainerGap())
         );
 
         jd_productos.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -756,6 +766,13 @@ public class SalmansGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jm_almacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_almacenActionPerformed
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < almacen.size(); i++) {
+            for (int j = 0; j < almacen.get(i).size(); j++) {
+                model.addElement(almacen.get(i).peek());
+            }
+        }
+        this.jl_almacen.setModel(model);
         openDialog(this.jd_almacen);
     }//GEN-LAST:event_jm_almacenActionPerformed
 
@@ -786,6 +803,13 @@ public class SalmansGUI extends javax.swing.JFrame {
         
         this.jt_ingrediente.setText("");
         JOptionPane.showMessageDialog(this, "Ingrediente Agregado al Almacén", "", JOptionPane.INFORMATION_MESSAGE);
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < almacen.size(); i++) {
+            for (int j = 0; j < almacen.get(i).size(); j++) {
+                model.addElement(almacen.get(i).peek());
+            }
+        }
+        this.jl_almacen.setModel(model);
     }//GEN-LAST:event_btn_addIngredientActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -965,10 +989,11 @@ public class SalmansGUI extends javax.swing.JFrame {
                 for (int i = 0; i < ingredientesTemp.size(); i++) {
                     for (int j = 0; j < almacen.size(); j++) {
                         try {
-                            if (!almacen.get(i).empty()){
+                            if (!almacen.get(j).empty()){
                                 if(ingredientesTemp.get(i).equalsIgnoreCase((String)almacen.get(j).peek())){   
                                     almacen.get(j).pop();
                                     tieneIngredientes.set(i, true);
+                                    break;
                                 }   
                             }
                         } catch (Exception e) {
@@ -1204,6 +1229,7 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox jc_camiones;
     private javax.swing.JComboBox jc_productos;
@@ -1212,6 +1238,7 @@ public class SalmansGUI extends javax.swing.JFrame {
     private javax.swing.JDialog jd_cocina;
     private javax.swing.JDialog jd_ordenes;
     private javax.swing.JDialog jd_productos;
+    private javax.swing.JList jl_almacen;
     private javax.swing.JList jl_camiones;
     private javax.swing.JList jl_eliminarIngredientes;
     private javax.swing.JList jl_ingredientes;
